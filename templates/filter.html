@@ -1,0 +1,265 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Sen:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/3326c36ed0.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      .right-col div {
+        margin: 0px 2px 2px 0px;
+      }
+      div{
+        color:white;
+      }
+      a{
+        color:black;
+        text-decoration: none;
+      }
+    </style>
+    <title>Movie Recommendation System</title>
+  </head>
+
+  <body>
+    <div
+    style="
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 60px;
+      background-color: black;
+      padding: 5px 20px;
+    "
+  >
+    <div style="display: flex;align-items: center;">
+      <h1
+        style="
+          color: #4dbf00;
+          font-size: 30px;
+          margin-right: 20px;
+        "
+      >
+        Movies
+      </h1>
+      <i class="fa-solid fa-clapperboard" style="color: #4dbf00; font-size: 30px;"></i>
+    </div>
+    <div style="margin-right: 10px; color: #4dbf00; font-size: 30px;">
+      <h1 style="color: #4dbf00; font-size: 30px">
+        <a href="/" style="color: #4dbf00; text-decoration: none;">
+          <i
+          class="fa fa-home"
+          aria-hidden="true"
+          style="margin-right: 10px; color: #4dbf00; font-size: 30px;"
+        ></i
+        >Home
+        </a>
+      </h1>
+    </div>
+  </div>
+    
+    <div style="background-image: url('{% static 'img/Homepage.jpeg' %}');
+    background-position: center;
+    background-size: 100% 100%;
+    overflow: hidden;">
+  <div
+  style="
+    display: flex;
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+  "
+>
+  <div style="margin-left: auto; margin-right: auto">
+    <div style="display: inline-block; margin-right: 15px">Sorted by:</div>
+    <div style="display: inline-block; margin-right: 15px">
+      {% if sort == 'name' and order == 'asc' %}
+      <a href="/sortby?cur=name&type={{movie_type}}&order={{order}}&page=1" style="text-decoration: none;"
+        >A-Z<i class="fa-solid fa-caret-up"></i
+      ></a>
+      {% elif sort == 'name' and order == 'dsc' %}
+      <a href="/sortby?cur=name&type={{movie_type}}&order={{order}}&page=1" style="text-decoration: none;"
+        >A-Z<i class="fa-solid fa-caret-down"></i
+      ></a>
+      {% else %}<a
+        href="/sortby?cur=name&type={{movie_type}}&order={{order}}&page=1" style="text-decoration: none;"
+        >A-Z</i
+      ></a>
+      {% endif %}
+    </div>
+    <div style="display: inline-block; margin-right: 15px">
+      {% if sort == 'rate' and order == 'asc' %}
+      <a href="/sortby?cur=rate&type={{movie_type}}&order={{order}}&page=1" style="text-decoration: none;"
+        >Rating<i class="fa-solid fa-caret-up"></i
+      ></a>
+      {% elif sort == 'rate' and order == 'dsc' %}
+      <a href="/sortby?cur=rate&type={{movie_type}}&order={{order}}&page=1" style="text-decoration: none;"
+        >Rating<i class="fa-solid fa-caret-down"></i
+      ></a>
+      {% else %}<a
+        href="/sortby?cur=rate&type={{movie_type}}&order={{order}}&page=1" style="text-decoration: none;"
+        >Rating</i
+      ></a>
+      {% endif %}
+    </div>
+    <div style="display: inline-block; margin-right: 15px">
+      {% if sort == 'year' and order == 'asc' %}
+      <a href="/sortby?cur=year&type={{movie_type}}&order={{order}}&page=1" style="text-decoration: none;"
+        >Release Data<i class="fa-solid fa-caret-up"></i
+      ></a>
+      {% elif sort == 'year' and order == 'dsc' %}
+      <a href="/sortby?cur=year&type={{movie_type}}&order={{order}}&page=1" style="text-decoration: none;"
+        >Release Data<i class="fa-solid fa-caret-down"></i
+      ></a>
+      {% else %}<a
+        href="/sortby?cur=year&type={{movie_type}}&order={{order}}&page=1" style="text-decoration: none;"
+        >Release Data</i
+      ></a>
+      {% endif %}
+    </div>
+    <div style="display: inline-block; margin-right: 15px">
+      {% if sort == 'runtime' and order == 'asc' %}
+      <a href="/sortby?cur=runtime&type={{movie_type}}&order={{order}}&page=1" style="text-decoration: none;"
+        >Runtime<i class="fa-solid fa-caret-up"></i
+      ></a>
+      {% elif sort == 'runtime' and order == 'dsc' %}
+      <a href="/sortby?cur=runtime&type={{movie_type}}&order={{order}}&page=1" style="text-decoration: none;"
+        >Runtime<i class="fa-solid fa-caret-down"></i
+      ></a>
+      {% else %}<a
+        href="/sortby?cur=runtime&type={{movie_type}}&order={{order}}&page=1" style="text-decoration: none;"
+        >Runtime</i
+      ></a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% for movie in movies %}
+<div
+  style="
+    display: flex;
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+  "
+>
+  <div style="width: 100px; padding: 5px">
+    <img style="width: 90px; height: 135px" src="{{movie.poster}}" alt="Movie Poster" />
+  </div>
+  <div class="right-col" style="flex: auto; padding-left: 10px">
+    <div style="font-size: 22px">
+      <a href="/frontpage/{{movie.name}}" style="text-decoration: none"
+        >{{movie.name}}</a
+      >
+      ({{movie.year}})
+    </div>
+    <div style="display: inline-block; margin-right: 15px">
+      <i class="fa-solid fa-star"></i>{{movie.rate}}
+    </div>
+    <div style="display: inline-block">
+      <i class="fa-solid fa-clock"></i>{{movie.runtime}}
+    </div>
+    <div>{{movie.overview}}</div>
+  </div>
+</div>
+{% endfor %}
+
+<br /><br />
+{% if multipage == True %}
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    {% if movies.has_previous %}
+    <li class="page-item">
+      <a
+        class="page-link"
+        href="/sortby?cur={{sort}}&type={{movie_type}}&order={{rorder}}&page={{movies.previous_page_number}}"
+        >Previous</a
+      >
+    </li>
+    {% endif %} {% if first %}
+    <li class="page-item">
+      <a
+        class="page-link"
+        href="/sortby?cur={{sort}}&type={{movie_type}}&order={{rorder}}&page=1"
+        >1</a
+      >
+    </li>
+    {% endif %} {% if left %} {% if left_has_more %}
+    <span style="margin: 5px">......</span>
+    {% endif %} {% for i in left %}
+    <li class="page-item">
+      <a
+        class="page-link"
+        href="/sortby?cur={{sort}}&type={{movie_type}}&order={{rorder}}&page={{ i }}"
+        >{{i}}</a
+      >
+    </li>
+    {% endfor %} {% endif %}
+    <li class="page-item active" aria-current="page">
+      <a
+        class="page-link"
+        href="/sortby?cur={{sort}}&type={{movie_type}}&order={{rorder}}&page={{page_number}}"
+        >{{page_number}}</a
+      >
+    </li>
+
+    {% if right %} {% for i in right %}
+    <li class="page-item">
+      <a
+        class="page-link"
+        href="/sortby?cur={{sort}}&type={{movie_type}}&order={{rorder}}&page={{ i }}"
+        >{{i}}</a
+      >
+    </li>
+    {% endfor %} {% if right_has_more %}
+    <span style="margin: 5px">......</span>
+    {% endif %} {% endif %} {% if last %}
+    <li class="page-item">
+      <a
+        class="page-link"
+        href="/sortby?cur={{sort}}&type={{movie_type}}&order={{rorder}}&page={{total_pages}}"
+        >{{total_pages}}</a
+      >
+    </li>
+    {% endif %} {% if movies.has_next %}
+    <li class="page-item">
+      <a
+        class="page-link"
+        href="/sortby?cur={{sort}}&type={{movie_type}}&order={{rorder}}&page={{movies.next_page_number}}"
+        >Next</a
+      >
+    </li>
+    {% endif %}
+  </ul>
+</nav>
+{% endif %}
+    </div>
+    
+
+    <script src="{% static 'app.js' %}"></script>
+  </body>
+</html>

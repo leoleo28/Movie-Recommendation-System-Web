@@ -1,0 +1,14 @@
+.img-field {
+  display: flex;
+  width: 30%;
+  height: 90px;
+  background: url("/static/img/horror.jpg");
+  background-position: center;
+  background-size: 100% 100%;
+  overflow: hidden;
+  opacity: 0.8;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  transition: 0.5s;
+}
