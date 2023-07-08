@@ -1,5 +1,5 @@
 # Movie Recommendation System
-* Link to youtube demo: [click here](https://www.youtube.com/watch?v=iEu0obs3QnM)
+* Link to youtube demo: [click here](https://www.youtube.com/watch?v=34JFKU5L4zc&t=2s)
 * Link to the website deployed on PythonAnywhere: [click here](http://leoleopython.pythonanywhere.com/)
 
 ### Overview
